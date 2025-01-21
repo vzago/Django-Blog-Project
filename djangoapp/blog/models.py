@@ -68,6 +68,7 @@ class Page(models.Model):
         if not self.slug:
             self.slug = slugify_new(self.title, 4)
         return super().save(*args, **kwargs)
+    
     def __str__(self) -> str:
         return self.title
     
@@ -116,8 +117,10 @@ class Post(models.Model):
         default=None,
     )
     tags = models.ManyToManyField(Tag, blank=True, default='')
+    
     def __str__(self):
         return self.title
+    
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.title, 4)
