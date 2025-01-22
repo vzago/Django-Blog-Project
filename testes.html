@@ -1,0 +1,28 @@
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <b>Itaque contra est, ac dicitis;</b> Invidiosum nomen est,
+    infame, suspectum. Ergo illi intellegunt quid Epicurus dicat, ego non intellego? Nam, ut sint illa vendibiliora,
+    haec uberiora certe sunt. Primum Theophrasti, Strato, physicum se voluit; <a href="http://loripsum.net/"
+        target="_blank">Erat enim Polemonis.</a> </p>
+<p><i>Duo Reges: constructio interrete.</i> Iam id ipsum absurdum, maximum malum neglegi. <a href="http://loripsum.net/"
+        target="_blank">Audeo dicere, inquit.</a> Ergo ita: non posse honeste vivi, nisi honeste vivatur? </p>
+<p>
+
+<pre>def category(request, slug):
+    posts = Post.objects.get_published()\
+        .filter(category__slug = slug)
+    
+    paginator = Paginator(posts, PER_PAGE)    
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': page_obj,
+        }
+    )</pre>
+
+</p>
+<p>Quasi ego id curem, quid ille aiat aut neget. Ita multa dicunt, quae vix intellegam. At iste non dolendi status non
+    vocatur voluptas. <b>Vestri haec verecundius, illi fortasse constantius.</b> Etenim semper illud extra est, quod
+    arte comprehenditur.&nbsp;</p>
