@@ -53,7 +53,7 @@ class PostAdmin(SummernoteModelAdmin):
     list_filter = 'category', 'is_published',
     list_editable = 'is_published',
     ordering = '-id',
-    eadonly_fields = (
+    readonly_fields = (
         'created_at', 'updated_at', 'created_by', 'updated_by',
         'link',
     )
