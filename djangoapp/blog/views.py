@@ -156,25 +156,23 @@ class PageDetailView(DetailView):
     def get_queryset(self):
         return super().get_queryset().filter(is_published=True)
         
-
-def post(request,slug):
+class PostDetailView(DetailView):
+    model = Post
+    template_name = 'blog/pages/post.html'
+    slug_field = 'slug'
+    context_object_name = 'post'
     
-    post_object = (
-        Post.objects.get_published()
-        .filter(slug=slug)
-        .first()
-    )
-    
-    if post_object is None :
-        raise Http404()
-
-    page_title =  f'{post_object.title} - Página -'
-    
-    return render(
-        request,
-        'blog/pages/post.html',
-        {
-            'post': post_object,
+    def get_context_data(self, **kwargs):
+        ctx = super().get_context_data(**kwargs)
+        post = self.get_object()
+        page_title = f'{post.title} - Página -'
+        
+        ctx.update({
             'page_title': page_title,
-        }
-    )
+        })
+        
+        return ctx
+    
+    def get_queryset(self):
+        return super().get_queryset().filter(is_published=True)
+    
